@@ -97,7 +97,7 @@ class MatrixController extends Controller
         if (!$matrix) {
             return response()->json(['status' => 'error', 'message' => 'Invalid id'], 404);
         } elseif ($request->auth_user->id != $matrix->created_by) {
-            return response()->json(['status' => 'error', 'message' => 'Resource does not belong to you'], 403);
+            return response()->json(['status' => 'error', 'message' => 'Requested resource does not belong to you'], 403);
         }
 
         return response()->json([
