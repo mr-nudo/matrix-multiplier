@@ -14,5 +14,15 @@
 */
 
 $router->get('/', function () use ($router) {
-    return 'Hello peepz : ' . $router->app->version();
+    return 'Welcome to the Matrix Multiplication API </br> Lumen Version : ' . $router->app->version();
+});
+
+
+$router->group(['domain' => 'api.' . env('APP_DOMAIN'), 'prefix' => 'v1'], function () use ($router) {
+    $router->post('/signup', 'AuthController@signup');
+
+    $router->group(['middleware' => ['auth']], function () use ($router) {
+
+	    $router->get('users', 'ExampleController@test');
+	});
 });

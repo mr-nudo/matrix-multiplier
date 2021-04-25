@@ -14,5 +14,8 @@ class ExampleController extends Controller
         //
     }
 
-    //
+    public function test()
+    {
+        return response()->json(['status' => 'success', 'data' => []], 301);
+    }
 }
