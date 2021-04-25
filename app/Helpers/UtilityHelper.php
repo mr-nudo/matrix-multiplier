@@ -4,12 +4,12 @@ namespace App\Helpers;
 
 class UtilityHelper {
 
-	public static function generateRandomCharacters($count = 3)
+	public static function generateRandomCharacters(int $count = 3)
     {
         return bin2hex(openssl_random_pseudo_bytes($count));
     }
 
-    public static function convertToCharacters($number)
+    public static function convertToCharacters(int $number)
     {
 	    if ($number <= 0) return '';
 

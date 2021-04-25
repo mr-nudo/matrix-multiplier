@@ -90,7 +90,7 @@ class MatrixController extends Controller
             ], 200);
     }
 
-    public function getMatrixRecord(Request $request, $id)
+    public function getMatrixRecord(Request $request, int $id)
     {
         $matrix = Matrix::where('id', $id)->first();
 
