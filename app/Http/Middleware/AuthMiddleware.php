@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Request;
+use Illuminate\Http\Request;
 use App\Models\User;
 
 class AuthMiddleware
@@ -27,7 +27,7 @@ class AuthMiddleware
         $auth_user = User::where('username', $username)->first();
 
         if ($auth_user && ($auth_user->password === $password)) {
-            Request::merge(['auth_user' => $auth_user]);
+            $request->merge(['auth_user' => $auth_user]);
             return $next($request);
         }
 

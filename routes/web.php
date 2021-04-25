@@ -22,7 +22,7 @@ $router->group(['domain' => 'api.' . env('APP_DOMAIN'), 'prefix' => 'v1'], funct
     $router->post('/signup', 'AuthController@signup');
 
     $router->group(['middleware' => ['auth']], function () use ($router) {
-
-	    $router->get('users', 'ExampleController@test');
+	    $router->post('/matrix', 'MatrixController@computeProduct');
+	    $router->get('/matrix/{id}', 'MatrixController@getMatrixRecord');
 	});
 });
