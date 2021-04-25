@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\UtilityHelper;
 use App\Models\Matrix;
 
 class MatrixController extends Controller
@@ -41,14 +42,16 @@ class MatrixController extends Controller
             'multiplier.*.*' => 'required|integer',
         ]);
 
-        $output = [];
+        $int_output = [];
+        $char_output = [];
         $multiplicand = $request->multiplicand;
         $multiplier = $request->multiplier;
         $multiplier_size = sizeof($multiplier[0]);
 
         //do dot multiplication
         foreach ($multiplicand as $key => $value) { 
-            $inner_output = [];            
+            $inner_int_output = [];
+            $inner_char_output = [];
 
             for ($i=0; $i < $multiplier_size; $i++) {
                 $inner_product = 0;
@@ -59,21 +62,32 @@ class MatrixController extends Controller
                 }
 
                 //Do character convertion here
-
-                array_push($inner_output, $inner_product);
+                array_push($inner_int_output, $inner_product);
+                array_push($inner_char_output, UtilityHelper::convertToCharacters($inner_product));
 
             }
 
-            array_push($output, $inner_output);
+            array_push($int_output, $inner_int_output);
+            array_push($char_output, $inner_char_output);
         }
 
-        //convert result
-
         //save to DB
+        $matrix = new Matrix();
+        $matrix->multiplicand = json_encode($multiplicand);
+        $matrix->multiplier = json_encode($multiplier);
+        $matrix->product = json_encode($int_output);
+        $matrix->transformed_product = json_encode($char_output);
+        $matrix->created_by = $request->auth_user->id;
+        $matrix->save();
 
         //return response
-
-        return response()->json(['status' => 'success', 'data' => $output], 301);
+        return response()->json([
+            'status' => 'success',
+            'data' => [
+                'id' => $matrix->id,
+                'matrix_product' => $int_output,
+                'transformed_product' => $char_output]
+            ], 200);
     }
 
     public function getMatrixRecord(Request $request, $id)
@@ -82,8 +96,23 @@ class MatrixController extends Controller
 
         if (!$matrix) {
             return response()->json(['status' => 'error', 'message' => 'Invalid id'], 404);
+        } elseif ($request->auth_user->id != $matrix->created_by) {
+            return response()->json(['status' => 'error', 'message' => 'Resource does not belong to you'], 403);
         }
 
-        return response()->json(['status' => 'success', 'data' => $matrix], 200);
+        return response()->json([
+            'status' => 'success', 
+            'data' => [
+                    'id' => $matrix->id,
+                    'matrix_product' => json_decode($matrix->product, true),
+                    'transformed_product' => json_decode($matrix->transformed_product),
+                    'creator' => [
+                        'account_name' => $matrix->user->account_name
+                    ],
+                    'created_at' => date('Y-m-d H:i:s', strtotime($matrix->created_at)),
+                    'updated_at' => date('Y-m-d H:i:s', strtotime($matrix->updated_at))
+                ]
+            ], 
+            200);
     }
 }
