@@ -14,7 +14,7 @@ Documentation for the framework can be found on the [Lumen website](https://lume
 
 ## Deployment
 
-Deployed on heroku here : 
+Deployed on heroku [here](https://matrix-multiplier.herokuapp.com/)
 
 ## Assumptions
 
@@ -52,13 +52,16 @@ Response:
 ```POST /matrix``` : To take in the multiplicand and multiplier
 
 Request:
-```{
+```
+{
 	"multiplicand" : [[1,2,3], [4,5,6]],
 	"multiplier" : [[1,1,1,1],[1,1,1,1],[1,1,1,1]]
-}```
+}
+```
 
 Response:
-```{
+```
+{
     "status": "success",
     "data": {
         "id": 1,
@@ -91,7 +94,8 @@ Response:
             ]
         ]
     }
-}```
+}
+```
 
 ```GET /matrix/{id}``` : To get a previously computed matrix
 

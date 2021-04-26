@@ -37,8 +37,8 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-install-cmd": [
-            "chmod -R 775 public/",
-            "chmod -R 775 routes/"
+            "chmod -R 777 public/",
+            "chmod -R 777 routes/"
         ]
     }
 }
