@@ -10,13 +10,13 @@ Documentation for the framework can be found on the [Lumen website](https://lume
 ```php artisan migrate```
 * To Run tests, cd to the project folder and run
 ```vendor/bin/phpunit```
-* Also, don' forget to update your `phpunit.xml` file with your test DB name, else, your working DB would be cleared after each test.
+* Also, don't forget to update your `phpunit.xml` file with your test DB name, else, your working DB would be cleared after each test.
 
 ## Deployment ⛵️
 
 Deployed on heroku [here](https://matrix-multiplier.herokuapp.com/) *(albeit all api routes are still showing a 404 😭 - currently working on fixing that)*
 
-## Assumptions
+## Assumptions 🤔
 
 *1. No views - This is a strictly API based system*
 
@@ -28,6 +28,7 @@ Deployed on heroku [here](https://matrix-multiplier.herokuapp.com/) *(albeit all
 ## Documentation 📖
 
 App has 3 endpoints:
+
 ```POST /signup``` : To request for a username and password. This would be used for a Basic Auth on the other endpoints
 
 Request:
