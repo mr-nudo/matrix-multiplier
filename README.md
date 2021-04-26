@@ -4,7 +4,7 @@ App was built in Laravel Lumen. Lumen is a stunningly fast PHP micro-framework f
 
 Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
 
-## Installing
+## Installing ⚙️
 
 * Pull the repo and run migration with 
 ```php artisan migrate```
@@ -12,9 +12,9 @@ Documentation for the framework can be found on the [Lumen website](https://lume
 ```vendor/bin/phpunit```
 * Also, don' forget to update your `phpunit.xml` file with your test DB name, else, your working DB would be cleared after each test.
 
-## Deployment
+## Deployment ⛵️
 
-Deployed on heroku [here](https://matrix-multiplier.herokuapp.com/)
+Deployed on heroku [here](https://matrix-multiplier.herokuapp.com/) *(albeit all api routes are still showing a 404 😭 - currently working on fixing that)*
 
 ## Assumptions
 
@@ -25,7 +25,7 @@ Deployed on heroku [here](https://matrix-multiplier.herokuapp.com/)
 *3. Basic Auth is used for authentication i.e Authorization => Bearer Encoded base64 of Username:Password*
 
 
-## Documentation
+## Documentation 📖
 
 App has 3 endpoints:
 ```POST /signup``` : To request for a username and password. This would be used for a Basic Auth on the other endpoints
@@ -158,8 +158,9 @@ Auto-generated Validator errors (with status code : 422) are in the format :
 }
 ```
 
-## Improvements
+## Improvements 🎉
 
 * Add email feature to the /signup endpoint to notify the users of their Auth Keys
-* An endpoint to refresh username and/or password
-* 
+* An endpoint to refresh username and/or password based on request
+* Upgrade the Design Pattern from MVC
+* Heroku to work properly on all API routes! 
