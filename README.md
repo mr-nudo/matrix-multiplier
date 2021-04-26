@@ -18,9 +18,11 @@ Deployed on heroku here :
 
 ## Assumptions
 
-*No views - This is a strictly API based system*
-*A Database is required to store Auth*
-*Basic Auth is used*
+*1. No views - This is a strictly API based system*
+
+*2. Database is required to store Auth*
+
+*3. Basic Auth is used for authentication i.e Authorization => Bearer Encoded base64 of Username:Password*
 
 
 ## Documentation
