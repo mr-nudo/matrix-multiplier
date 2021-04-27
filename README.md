@@ -159,9 +159,10 @@ Auto-generated Validator errors (with status code : 422) are in the format :
 }
 ```
 
-## Improvements 🎉
+## Suggestions for Improvement 🎉
 
 * Add email feature to the /signup endpoint to notify the users of their Auth Keys
 * An endpoint to refresh username and/or password based on request
+* Allowing the endpoint to take an array of multiple matrices that need to be computed
 * Upgrade the Design Pattern from MVC
 * Heroku to work properly on all API routes! 
